@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Driving Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="dashboard">
+  <div class="gauge">
+    <div class="needle" id="rpmNeedle"></div>
+    <div class="center">RPM</div>
+  </div>
+
+  <div class="gauge">
+    <div class="needle" id="speedNeedle"></div>
+    <div class="center">KM/H</div>
+  </div>
+
+  <div id="gearDisplay">N</div>
+</div>
+
+<canvas id="simCanvas"></canvas>
+
+<script src="sim.js"></script>
+</body>
+</html>
