@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(#151520, #050509);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+#simCanvas {
+  width: 100vw;
+  height: 100vh;
+}
+
+#dashboard {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.gauge {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 6px solid #444;
+  position: relative;
+  background: radial-gradient(#111, #000);
+}
+
+.needle {
+  position: absolute;
+  width: 4px;
+  height: 70px;
+  background: red;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: bottom;
+  transform: rotate(-90deg);
+  transition: transform 0.08s linear;
+}
+
+.center {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+#gearDisplay {
+  font-size: 56px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #555;
+  border-radius: 10px;
+}
