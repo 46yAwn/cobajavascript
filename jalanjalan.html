@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(to bottom, #87CEEB, #E0F7FF);
@@ -19,887 +19,937 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             padding: 20px;
+            overflow-x: hidden;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            overflow: hidden;
         }
-        
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
+
+        .title {
             text-align: center;
-            border-bottom: 3px solid #f39c12;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
-        
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
+
+        .title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
-        
-        .header p {
+
+        .title p {
             font-size: 1.1rem;
-            opacity: 0.9;
+            color: #34495e;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .simulation-container {
+
+        .road-container {
             position: relative;
-            width: 100%;
             height: 600px;
-            background-color: #5a8c5a;
+            background: linear-gradient(to bottom, #5D4037, #4E342E);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            border: 8px solid #795548;
         }
-        
+
+        /* Bagian Langit */
+        .sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background: linear-gradient(to bottom, #87CEEB, #B3E5FC);
+        }
+
+        /* Awan */
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .cloud-1 {
+            width: 120px;
+            height: 40px;
+            top: 40px;
+            left: 10%;
+        }
+
+        .cloud-2 {
+            width: 150px;
+            height: 50px;
+            top: 80px;
+            left: 60%;
+        }
+
+        .cloud-3 {
+            width: 100px;
+            height: 35px;
+            top: 120px;
+            left: 30%;
+        }
+
         /* Pepohonan */
         .tree {
             position: absolute;
             bottom: 0;
-            z-index: 10;
+            z-index: 5;
         }
-        
+
         .tree-left {
             left: 0;
+            transform: translateX(-50%);
         }
-        
+
         .tree-right {
             right: 0;
+            transform: translateX(50%);
         }
-        
+
         .tree-trunk {
-            width: 25px;
-            height: 80px;
+            width: 20px;
+            height: 100px;
             background-color: #8B4513;
             margin: 0 auto;
         }
-        
-        .tree-foliage {
+
+        .tree-crown {
             width: 120px;
             height: 120px;
-            background-color: #2d5a27;
-            border-radius: 60px 60px 40px 40px;
+            background-color: #2E7D32;
+            border-radius: 50%;
+            margin-top: -60px;
             position: relative;
-            top: -30px;
-            left: -47px;
         }
-        
-        .tree-foliage::after {
+
+        .tree-crown::before, .tree-crown::after {
             content: '';
             position: absolute;
-            width: 90px;
-            height: 90px;
-            background-color: #3a7c31;
+            background-color: #2E7D32;
             border-radius: 50%;
-            top: 15px;
-            left: 15px;
         }
-        
+
+        .tree-crown::before {
+            width: 100px;
+            height: 100px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .tree-crown::after {
+            width: 80px;
+            height: 80px;
+            top: 10px;
+            left: 20px;
+        }
+
         /* Jalan Raya */
         .road {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80%;
-            height: 200px;
-            background-color: #333;
-            left: 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 10px 0;
+            top: 35%;
+            width: 100%;
+            height: 65%;
+            background-color: #37474F;
         }
-        
-        .road::before {
-            content: '';
+
+        /* Garis pembatas jalan */
+        .road-markings {
             position: absolute;
             top: 50%;
-            left: 0;
             width: 100%;
-            height: 6px;
-            background: repeating-linear-gradient(
-                to right,
-                #ffd700 0px,
-                #ffd700 30px,
-                transparent 30px,
-                transparent 60px
-            );
+            height: 0;
+            border-top: 6px dashed #FFEB3B;
         }
-        
+
+        /* Lajur kendaraan */
         .lane {
-            height: 45%;
-            position: relative;
-        }
-        
-        .lane-divider {
-            width: 100%;
-            height: 2px;
-            background-color: #555;
-        }
-        
-        /* Zebra Cross dan Halte */
-        .crossing-area {
             position: absolute;
-            right: 15%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 200px;
-            z-index: 5;
+            width: 50%;
+            height: 100%;
         }
-        
+
+        .lane-left {
+            left: 0;
+        }
+
+        .lane-right {
+            right: 0;
+        }
+
+        /* Zebra cross */
         .zebra-cross {
             position: absolute;
-            right: 0;
-            top: 0;
-            width: 120px;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                white 0px,
-                white 20px,
-                #333 20px,
-                #333 40px
-            );
+            right: 25%;
+            bottom: 0;
+            width: 200px;
+            height: 300px;
+            background-image: 
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%),
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%),
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%),
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%),
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%),
+                linear-gradient(to right, white 0%, white 40%, transparent 40%, transparent 60%, white 60%, white 100%);
+            background-size: 100% 16.66%;
+            background-repeat: no-repeat;
+            background-position: 0 0, 0 16.66%, 0 33.32%, 0 49.98%, 0 66.64%, 0 83.3%;
             z-index: 2;
         }
-        
+
+        /* Halte bus */
         .bus-stop {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 130px;
-            height: 100%;
-            background-color: #7f8c8d;
-            border-radius: 10px 0 0 10px;
+            right: 20%;
+            bottom: 300px;
+            width: 120px;
+            height: 80px;
+            background-color: #607D8B;
+            border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            font-size: 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 3;
         }
-        
+
+        .bus-stop::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            width: 80px;
+            height: 10px;
+            background-color: #455A64;
+            border-radius: 0 0 5px 5px;
+        }
+
         .bus-stop i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #f1c40f;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
-        
-        /* Lampu Lalu Lintas */
+
+        /* Lampu lalu lintas */
         .traffic-light {
             position: absolute;
-            right: 135px;
-            top: 20px;
-            width: 70px;
-            height: 180px;
-            background-color: #222;
-            border-radius: 10px;
+            right: 18%;
+            top: 180px;
+            width: 60px;
             z-index: 10;
+        }
+
+        .traffic-light-pole {
+            width: 15px;
+            height: 200px;
+            background-color: #546E7A;
+            margin: 0 auto;
+        }
+
+        .traffic-light-box {
+            width: 60px;
+            height: 160px;
+            background-color: #37474F;
+            border-radius: 10px;
+            padding: 15px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-            padding: 15px 0;
+            justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        
-        .traffic-light::before {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            width: 20px;
-            height: 80px;
-            background-color: #444;
-            left: 25px;
-        }
-        
+
         .light {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             background-color: #555;
+            opacity: 0.3;
+            transition: opacity 0.3s;
         }
-        
-        .light.red.active {
-            background-color: #e74c3c;
-            box-shadow: 0 0 15px #e74c3c;
+
+        .light.active {
+            opacity: 1;
         }
-        
-        .light.yellow.active {
-            background-color: #f1c40f;
-            box-shadow: 0 0 15px #f1c40f;
-        }
-        
-        .light.green.active {
-            background-color: #2ecc71;
-            box-shadow: 0 0 15px #2ecc71;
-        }
-        
+
+        .light.red { background-color: #F44336; }
+        .light.yellow { background-color: #FFC107; }
+        .light.green { background-color: #4CAF50; }
+
         /* Kendaraan */
         .vehicle {
             position: absolute;
-            bottom: 20px;
+            z-index: 1;
             transition: left 0.1s linear;
         }
-        
+
+        /* Mobil */
         .car {
-            width: 80px;
+            width: 100px;
             height: 40px;
-            background-color: #e74c3c;
-            border-radius: 10px 10px 5px 5px;
-            position: relative;
-        }
-        
-        .car::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 10px;
-            width: 60px;
-            height: 20px;
-            background-color: #e74c3c;
-            border-radius: 10px 10px 0 0;
-        }
-        
-        .car::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: #3498db;
-            border-radius: 50%;
-            top: -5px;
-            left: 15px;
-            box-shadow: 35px 0 #3498db;
-        }
-        
-        .car.wheel {
-            position: absolute;
-            bottom: -5px;
-            width: 15px;
-            height: 15px;
-            background-color: #333;
-            border-radius: 50%;
-        }
-        
-        .car.wheel.front {
-            left: 15px;
-        }
-        
-        .car.wheel.back {
-            right: 15px;
-        }
-        
-        .motorcycle {
-            width: 60px;
-            height: 35px;
-            position: relative;
-        }
-        
-        .motorcycle-body {
-            width: 60px;
-            height: 20px;
-            background-color: #3498db;
             border-radius: 10px 20px 5px 5px;
-            position: relative;
         }
-        
-        .motorcycle-seat {
-            width: 30px;
-            height: 10px;
-            background-color: #8e44ad;
-            border-radius: 5px;
+
+        .car-body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 10px 20px 5px 5px;
+        }
+
+        .car-roof {
             position: absolute;
-            top: -5px;
+            top: 0;
+            width: 60px;
+            height: 20px;
+            left: 20px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .car-window {
+            position: absolute;
+            top: 5px;
+            width: 25px;
+            height: 12px;
+            background-color: #87CEEB;
+            border-radius: 2px;
+        }
+
+        .car-window.front {
+            left: 25px;
+        }
+
+        .car-window.back {
+            right: 25px;
+        }
+
+        .car-wheel {
+            position: absolute;
+            bottom: -8px;
+            width: 15px;
+            height: 15px;
+            background-color: #222;
+            border-radius: 50%;
+            border: 2px solid #555;
+        }
+
+        .car-wheel.front {
             left: 20px;
         }
-        
-        .motorcycle-handle {
+
+        .car-wheel.back {
+            right: 20px;
+        }
+
+        .car-color-1 { background-color: #E53935; }
+        .car-color-2 { background-color: #1E88E5; }
+        .car-color-3 { background-color: #43A047; }
+        .car-color-4 { background-color: #FB8C00; }
+        .car-color-5 { background-color: #8E24AA; }
+
+        /* Motor */
+        .motorcycle {
+            width: 70px;
+            height: 40px;
+        }
+
+        .moto-body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .moto-frame {
+            width: 60px;
+            height: 20px;
+            background-color: #333;
+            position: absolute;
+            top: 10px;
+            left: 5px;
+            border-radius: 5px;
+        }
+
+        .moto-seat {
+            width: 30px;
+            height: 10px;
+            background-color: #795548;
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            border-radius: 3px 10px 10px 3px;
+        }
+
+        .moto-handlebar {
             width: 25px;
             height: 5px;
             background-color: #333;
             position: absolute;
-            top: -10px;
-            left: 5px;
-            transform: rotate(15deg);
+            top: 5px;
+            left: 0;
+            border-radius: 2px;
         }
-        
-        .motorcycle-wheel {
+
+        .moto-wheel {
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             width: 15px;
             height: 15px;
-            background-color: #333;
+            background-color: #222;
             border-radius: 50%;
+            border: 2px solid #555;
         }
-        
-        .motorcycle-wheel.front {
+
+        .moto-wheel.front {
             left: 10px;
         }
-        
-        .motorcycle-wheel.back {
+
+        .moto-wheel.back {
             right: 10px;
         }
-        
+
+        .moto-color-1 { background-color: #FDD835; }
+        .moto-color-2 { background-color: #26C6DA; }
+        .moto-color-3 { background-color: #EC407A; }
+
+        /* Bus */
         .bus {
-            width: 120px;
-            height: 50px;
-            background-color: #f39c12;
+            width: 150px;
+            height: 60px;
             border-radius: 10px;
+        }
+
+        .bus-body {
+            width: 100%;
+            height: 100%;
             position: relative;
+            border-radius: 10px;
         }
-        
-        .bus::before {
-            content: '';
+
+        .bus-windows {
             position: absolute;
-            top: 5px;
-            left: 10px;
-            width: 100px;
-            height: 30px;
-            background-color: #f7dc6f;
-            border-radius: 5px;
-        }
-        
-        .bus-window {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: #3498db;
-            border-radius: 3px;
             top: 10px;
+            left: 10px;
+            width: 130px;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
         }
-        
-        .bus-window:nth-child(2) {
-            left: 30px;
+
+        .bus-window {
+            width: 25px;
+            height: 20px;
+            background-color: #87CEEB;
+            border-radius: 3px;
         }
-        
-        .bus-window:nth-child(3) {
-            left: 50px;
-        }
-        
-        .bus-window:nth-child(4) {
-            left: 70px;
-        }
-        
-        .bus-window:nth-child(5) {
-            left: 90px;
-        }
-        
-        .bus.wheel {
+
+        .bus-wheel {
             position: absolute;
             bottom: -8px;
             width: 20px;
             height: 20px;
-            background-color: #333;
+            background-color: #222;
             border-radius: 50%;
+            border: 3px solid #555;
         }
-        
-        .bus.wheel.front {
-            left: 20px;
+
+        .bus-wheel.front {
+            left: 25px;
         }
-        
-        .bus.wheel.back {
-            right: 20px;
+
+        .bus-wheel.back {
+            right: 25px;
         }
-        
-        /* Kontrol dan informasi */
+
+        .bus-color-1 { background-color: #FF5722; }
+        .bus-color-2 { background-color: #3F51B5; }
+
+        /* Kontrol dan status */
         .controls {
-            background-color: #34495e;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
             padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            color: white;
         }
-        
+
         .traffic-status {
-            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .traffic-status h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .status-light {
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
             font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background-color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
-        
+
         .status-red {
-            color: #e74c3c;
-            text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            background-color: #F44336;
         }
-        
+
         .status-yellow {
-            color: #f1c40f;
-            text-shadow: 0 0 5px rgba(241, 196, 15, 0.5);
+            background-color: #FFC107;
+            color: #333;
         }
-        
+
         .status-green {
-            color: #2ecc71;
-            text-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+            background-color: #4CAF50;
         }
-        
-        .timer {
+
+        .vehicle-count {
+            display: flex;
+            gap: 20px;
+        }
+
+        .count-item {
+            text-align: center;
+        }
+
+        .count-item h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .count-value {
             font-size: 1.5rem;
             font-weight: bold;
-            background-color: #2c3e50;
-            padding: 10px 20px;
-            border-radius: 5px;
+            color: #37474F;
         }
-        
-        .buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-start {
-            background-color: #2ecc71;
-            color: white;
-        }
-        
-        .btn-pause {
-            background-color: #f39c12;
-            color: white;
-        }
-        
-        .btn-reset {
-            background-color: #e74c3c;
-            color: white;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-        
+
         .instructions {
-            background-color: #ecf0f1;
-            padding: 15px;
+            margin-top: 15px;
+            color: #546E7A;
             font-size: 0.9rem;
-            color: #2c3e50;
-            line-height: 1.5;
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
         }
-        
-        /* Pohon tambahan untuk efek natural */
-        .tree-small {
-            width: 60px;
-            height: 100px;
-        }
-        
-        .tree-small .tree-trunk {
-            width: 15px;
-            height: 50px;
-        }
-        
-        .tree-small .tree-foliage {
-            width: 70px;
-            height: 70px;
-            left: -27px;
-        }
-        
-        .tree-small .tree-foliage::after {
-            width: 50px;
-            height: 50px;
-            top: 10px;
-            left: 10px;
-        }
-        
-        /* Efek awan */
-        .cloud {
-            position: absolute;
-            background-color: white;
-            border-radius: 50px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            z-index: 1;
-        }
-        
-        .cloud-1 {
-            width: 120px;
-            height: 40px;
-            top: 50px;
-            left: 10%;
-            animation: cloudMove 40s linear infinite;
-        }
-        
-        .cloud-2 {
-            width: 150px;
-            height: 50px;
-            top: 100px;
-            left: 50%;
-            animation: cloudMove 50s linear infinite;
-        }
-        
-        .cloud-3 {
-            width: 100px;
-            height: 35px;
-            top: 80px;
-            left: 80%;
-            animation: cloudMove 45s linear infinite;
-        }
-        
-        @keyframes cloudMove {
-            0% { transform: translateX(-100px); }
-            100% { transform: translateX(1400px); }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .road-container {
+                height: 500px;
+            }
+            
+            .title h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .vehicle-count {
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-road"></i> Simulasi Jalan Raya dengan Lampu Lalu Lintas</h1>
-            <p>Kendaraan akan berhenti saat lampu merah dan berjalan saat lampu hijau menyala</p>
+        <div class="title">
+            <h1>Simulasi Jalan Raya dengan Lampu Lalu Lintas</h1>
+            <p>Animasi jalan raya dengan 2 lajur, zebra cross, halte bus, dan lampu lalu lintas otomatis yang berubah setiap 5 detik. Kendaraan akan berhenti saat lampu merah dan berjalan saat lampu hijau.</p>
         </div>
         
-        <div class="simulation-container">
-            <!-- Awan -->
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-            <div class="cloud cloud-3"></div>
+        <div class="road-container">
+            <!-- Langit dan awan -->
+            <div class="sky">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+                <div class="cloud cloud-3"></div>
+            </div>
             
             <!-- Pepohonan di sisi kiri -->
-            <div class="tree tree-left" style="bottom: 0; left: 5%;">
+            <div class="tree tree-left" style="left: 5%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
+                <div class="tree-crown"></div>
             </div>
             
-            <div class="tree tree-left tree-small" style="bottom: 0; left: 2%;">
+            <div class="tree tree-left" style="left: 10%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
+                <div class="tree-crown"></div>
             </div>
             
-            <div class="tree tree-left" style="bottom: 0; left: 8%;">
+            <div class="tree tree-left" style="left: 15%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
+                <div class="tree-crown"></div>
             </div>
             
             <!-- Pepohonan di sisi kanan -->
-            <div class="tree tree-right" style="bottom: 0; right: 5%;">
+            <div class="tree tree-right" style="right: 5%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
+                <div class="tree-crown"></div>
             </div>
             
-            <div class="tree tree-right tree-small" style="bottom: 0; right: 2%;">
+            <div class="tree tree-right" style="right: 10%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
+                <div class="tree-crown"></div>
             </div>
             
-            <div class="tree tree-right" style="bottom: 0; right: 8%;">
+            <div class="tree tree-right" style="right: 15%;">
                 <div class="tree-trunk"></div>
-                <div class="tree-foliage"></div>
-            </div>
-            
-            <!-- Area zebra cross dan halte -->
-            <div class="crossing-area">
-                <div class="bus-stop">
-                    <i class="fas fa-bus"></i>
-                    <span>HALTE BUS</span>
-                </div>
-                <div class="zebra-cross"></div>
-            </div>
-            
-            <!-- Lampu lalu lintas -->
-            <div class="traffic-light">
-                <div class="light red active"></div>
-                <div class="light yellow"></div>
-                <div class="light green"></div>
+                <div class="tree-crown"></div>
             </div>
             
             <!-- Jalan raya -->
             <div class="road">
-                <div class="lane" id="lane-top">
-                    <!-- Kendaraan akan dimasukkan via JavaScript -->
+                <div class="road-markings"></div>
+                
+                <!-- Lajur kiri -->
+                <div class="lane lane-left"></div>
+                
+                <!-- Lajur kanan -->
+                <div class="lane lane-right"></div>
+                
+                <!-- Zebra cross -->
+                <div class="zebra-cross"></div>
+                
+                <!-- Halte bus -->
+                <div class="bus-stop">
+                    <i class="fas fa-bus"></i>
+                    <span>Halte Bus</span>
                 </div>
-                <div class="lane-divider"></div>
-                <div class="lane" id="lane-bottom">
-                    <!-- Kendaraan akan dimasukkan via JavaScript -->
+                
+                <!-- Lampu lalu lintas -->
+                <div class="traffic-light">
+                    <div class="traffic-light-pole"></div>
+                    <div class="traffic-light-box">
+                        <div class="light red" id="red-light"></div>
+                        <div class="light yellow" id="yellow-light"></div>
+                        <div class="light green" id="green-light"></div>
+                    </div>
                 </div>
+                
+                <!-- Kendaraan akan ditambahkan melalui JavaScript -->
             </div>
         </div>
         
         <div class="controls">
             <div class="traffic-status">
-                Status Lampu: <span id="status-text" class="status-red">MERAH - KENDARAAN BERHENTI</span>
+                <h3>Status Lampu Lalu Lintas</h3>
+                <div class="status-light" id="status-text">MERAH</div>
+                <div id="timer" style="margin-top: 8px; font-weight: bold; color: #37474F;">Berubah dalam: 5 detik</div>
             </div>
             
-            <div class="timer">
-                <i class="fas fa-clock"></i> Waktu: <span id="countdown">5</span> detik
+            <div class="vehicle-count">
+                <div class="count-item">
+                    <h4>Mobil</h4>
+                    <div class="count-value" id="car-count">0</div>
+                </div>
+                <div class="count-item">
+                    <h4>Motor</h4>
+                    <div class="count-value" id="motorcycle-count">0</div>
+                </div>
+                <div class="count-item">
+                    <h4>Bus</h4>
+                    <div class="count-value" id="bus-count">0</div>
+                </div>
             </div>
             
-            <div class="buttons">
-                <button class="btn btn-start" id="start-btn">
-                    <i class="fas fa-play"></i> Mulai
-                </button>
-                <button class="btn btn-pause" id="pause-btn">
-                    <i class="fas fa-pause"></i> Jeda
-                </button>
-                <button class="btn btn-reset" id="reset-btn">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
+            <div class="instructions">
+                <i class="fas fa-info-circle"></i> Lampu lalu lintas otomatis berganti setiap 5 detik: Merah (berhenti) → Kuning (hati-hati) → Hijau (jalan)
             </div>
-        </div>
-        
-        <div class="instructions">
-            <p><i class="fas fa-info-circle"></i> <strong>Instruksi:</strong> Lampu lalu lintas akan berganti setiap 5 detik secara otomatis. Saat lampu merah, semua kendaraan berhenti di belakang zebra cross. Saat lampu hijau, kendaraan melanjutkan perjalanan. Gunakan tombol untuk mengontrol simulasi.</p>
         </div>
     </div>
 
     <script>
-        // Variabel global untuk simulasi
-        let simulationRunning = true;
-        let trafficLightState = 'red'; // 'red', 'yellow', 'green'
-        let countdown = 5;
-        let countdownInterval;
-        let vehicleSpeed = 2;
+        // Variabel global
         let vehicles = [];
+        let trafficLightState = 'red'; // red, yellow, green
+        let timeLeft = 5;
+        let vehicleId = 0;
+        let carCount = 0;
+        let motorcycleCount = 0;
+        let busCount = 0;
         
-        // Elemen DOM
-        const laneTop = document.getElementById('lane-top');
-        const laneBottom = document.getElementById('lane-bottom');
-        const statusText = document.getElementById('status-text');
-        const countdownElement = document.getElementById('countdown');
-        const startBtn = document.getElementById('start-btn');
-        const pauseBtn = document.getElementById('pause-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const redLight = document.querySelector('.light.red');
-        const yellowLight = document.querySelector('.light.yellow');
-        const greenLight = document.querySelector('.light.green');
+        // Update elemen hitungan kendaraan
+        function updateVehicleCounts() {
+            document.getElementById('car-count').textContent = carCount;
+            document.getElementById('motorcycle-count').textContent = motorcycleCount;
+            document.getElementById('bus-count').textContent = busCount;
+        }
         
         // Kelas Kendaraan
         class Vehicle {
-            constructor(type, lane, position) {
-                this.type = type;
-                this.lane = lane;
-                this.position = position;
-                this.speed = vehicleSpeed;
-                this.isStopped = false;
+            constructor(type, lane, colorClass, speed) {
+                this.id = vehicleId++;
+                this.type = type; // 'car', 'motorcycle', 'bus'
+                this.lane = lane; // 'left' atau 'right'
+                this.colorClass = colorClass;
+                this.speed = speed;
+                this.isMoving = true;
                 this.element = null;
-                this.id = Math.random().toString(36).substr(2, 9);
-                this.createVehicleElement();
+                
+                // Menambah hitungan berdasarkan jenis kendaraan
+                if (type === 'car') carCount++;
+                else if (type === 'motorcycle') motorcycleCount++;
+                else if (type === 'bus') busCount++;
+                
+                updateVehicleCounts();
+                
+                this.create();
+                this.addToRoad();
             }
             
-            createVehicleElement() {
-                const vehicleDiv = document.createElement('div');
-                vehicleDiv.className = `vehicle ${this.type}`;
-                vehicleDiv.id = this.id;
+            create() {
+                const vehicle = document.createElement('div');
+                vehicle.className = `vehicle ${this.type} ${this.colorClass}`;
+                vehicle.id = `vehicle-${this.id}`;
+                
+                // Posisi awal berdasarkan lajur
+                const laneOffset = this.lane === 'left' ? 0 : 50;
+                const topPosition = 35 + Math.random() * 30; // 35% adalah awal jalan
+                
+                vehicle.style.left = `${laneOffset}%`;
+                vehicle.style.top = `${topPosition}%`;
+                
+                // Isi kendaraan berdasarkan jenis
+                let vehicleHTML = '';
                 
                 if (this.type === 'car') {
-                    vehicleDiv.innerHTML = `
-                        <div class="car">
-                            <div class="wheel front"></div>
-                            <div class="wheel back"></div>
+                    vehicleHTML = `
+                        <div class="car-body">
+                            <div class="car-roof ${this.colorClass}"></div>
+                            <div class="car-window front"></div>
+                            <div class="car-window back"></div>
+                            <div class="car-wheel front"></div>
+                            <div class="car-wheel back"></div>
                         </div>
                     `;
                 } else if (this.type === 'motorcycle') {
-                    vehicleDiv.innerHTML = `
-                        <div class="motorcycle">
-                            <div class="motorcycle-body"></div>
-                            <div class="motorcycle-seat"></div>
-                            <div class="motorcycle-handle"></div>
-                            <div class="motorcycle-wheel front"></div>
-                            <div class="motorcycle-wheel back"></div>
+                    vehicleHTML = `
+                        <div class="moto-body">
+                            <div class="moto-frame ${this.colorClass}"></div>
+                            <div class="moto-seat"></div>
+                            <div class="moto-handlebar"></div>
+                            <div class="moto-wheel front"></div>
+                            <div class="moto-wheel back"></div>
                         </div>
                     `;
                 } else if (this.type === 'bus') {
-                    vehicleDiv.innerHTML = `
-                        <div class="bus">
-                            <div class="bus-window"></div>
-                            <div class="bus-window"></div>
-                            <div class="bus-window"></div>
-                            <div class="bus-window"></div>
-                            <div class="bus-window"></div>
-                            <div class="wheel front"></div>
-                            <div class="wheel back"></div>
+                    vehicleHTML = `
+                        <div class="bus-body">
+                            <div class="bus-windows">
+                                <div class="bus-window"></div>
+                                <div class="bus-window"></div>
+                                <div class="bus-window"></div>
+                                <div class="bus-window"></div>
+                                <div class="bus-window"></div>
+                            </div>
+                            <div class="bus-wheel front"></div>
+                            <div class="bus-wheel back"></div>
                         </div>
                     `;
                 }
                 
-                // Tambahkan ke lane yang sesuai
-                if (this.lane === 'top') {
-                    laneTop.appendChild(vehicleDiv);
-                } else {
-                    laneBottom.appendChild(vehicleDiv);
-                }
-                
-                this.element = vehicleDiv;
-                this.updatePosition();
+                vehicle.innerHTML = vehicleHTML;
+                this.element = vehicle;
             }
             
-            updatePosition() {
-                if (!this.element) return;
+            addToRoad() {
+                document.querySelector('.road').appendChild(this.element);
+                vehicles.push(this);
+            }
+            
+            move() {
+                if (!this.isMoving) return;
                 
-                // Tentukan posisi Y berdasarkan lane
-                const laneOffset = this.lane === 'top' ? 0 : 110;
+                const currentLeft = parseFloat(this.element.style.left);
+                const zebraCrossLeft = 50; // Zebra cross berada di 50% dari kanan
                 
-                // Jika kendaraan berhenti karena lampu merah dan sudah dekat zebra cross
-                const zebraCrossStart = 65; // % dari kiri jalan
-                const stoppingDistance = this.type === 'bus' ? 15 : (this.type === 'car' ? 10 : 5);
-                
-                if (trafficLightState === 'red' && this.position > zebraCrossStart - stoppingDistance && this.position < zebraCrossStart + 5) {
-                    this.isStopped = true;
-                    this.speed = 0;
-                } else if (trafficLightState === 'green' || this.position < zebraCrossStart - stoppingDistance) {
-                    this.isStopped = false;
-                    this.speed = vehicleSpeed;
+                // Periksa apakah kendaraan mendekati zebra cross saat lampu merah
+                if (trafficLightState === 'red' && currentLeft > zebraCrossLeft - 10 && currentLeft < zebraCrossLeft + 15) {
+                    this.isMoving = false;
+                    return;
                 }
                 
-                // Update posisi
-                this.position += this.speed;
-                
-                // Jika kendaraan sudah melewati jalan, reset posisinya
-                if (this.position > 100) {
-                    this.position = -20;
-                    this.isStopped = false;
-                    this.speed = vehicleSpeed;
+                // Jika lampu hijau atau kuning, kendaraan bisa bergerak
+                if (trafficLightState === 'green' || trafficLightState === 'yellow') {
+                    this.isMoving = true;
                 }
                 
-                // Terapkan posisi ke elemen
-                this.element.style.left = `${this.position}%`;
-                this.element.style.bottom = `${laneOffset}px`;
+                // Bergerak maju
+                let newLeft = currentLeft + this.speed;
+                
+                // Jika kendaraan telah melewati batas kanan, reset ke kiri
+                if (newLeft > 100) {
+                    newLeft = -20;
+                }
+                
+                this.element.style.left = `${newLeft}%`;
+            }
+            
+            remove() {
+                this.element.remove();
+                const index = vehicles.indexOf(this);
+                if (index > -1) {
+                    vehicles.splice(index, 1);
+                }
+                
+                // Mengurangi hitungan
+                if (this.type === 'car') carCount--;
+                else if (this.type === 'motorcycle') motorcycleCount--;
+                else if (this.type === 'bus') busCount--;
+                
+                updateVehicleCounts();
             }
         }
         
-        // Inisialisasi kendaraan
-        function initializeVehicles() {
-            vehicles = [];
+        // Fungsi untuk menghasilkan kendaraan baru secara acak
+        function generateRandomVehicle() {
+            const types = ['car', 'motorcycle', 'bus'];
+            const lanes = ['left', 'right'];
+            const carColors = ['car-color-1', 'car-color-2', 'car-color-3', 'car-color-4', 'car-color-5'];
+            const motorcycleColors = ['moto-color-1', 'moto-color-2', 'moto-color-3'];
+            const busColors = ['bus-color-1', 'bus-color-2'];
             
-            // Buat kendaraan untuk lane atas (kiri ke kanan)
-            vehicles.push(new Vehicle('car', 'top', 10));
-            vehicles.push(new Vehicle('motorcycle', 'top', 30));
-            vehicles.push(new Vehicle('bus', 'top', 50));
-            vehicles.push(new Vehicle('car', 'top', 70));
+            const type = types[Math.floor(Math.random() * types.length)];
+            const lane = lanes[Math.floor(Math.random() * lanes.length)];
             
-            // Buat kendaraan untuk lane bawah (kanan ke kiri)
-            vehicles.push(new Vehicle('car', 'bottom', 90));
-            vehicles.push(new Vehicle('motorcycle', 'bottom', 60));
-            vehicles.push(new Vehicle('bus', 'bottom', 40));
-            vehicles.push(new Vehicle('car', 'bottom', 20));
+            let colorClass;
+            if (type === 'car') {
+                colorClass = carColors[Math.floor(Math.random() * carColors.length)];
+            } else if (type === 'motorcycle') {
+                colorClass = motorcycleColors[Math.floor(Math.random() * motorcycleColors.length)];
+            } else {
+                colorClass = busColors[Math.floor(Math.random() * busColors.length)];
+            }
+            
+            // Kecepatan berbeda berdasarkan jenis kendaraan
+            let speed;
+            if (type === 'car') speed = 0.3 + Math.random() * 0.2;
+            else if (type === 'motorcycle') speed = 0.4 + Math.random() * 0.3;
+            else speed = 0.2 + Math.random() * 0.1; // Bus lebih lambat
+            
+            return new Vehicle(type, lane, colorClass, speed);
         }
         
-        // Update semua kendaraan
-        function updateVehicles() {
-            vehicles.forEach(vehicle => {
-                vehicle.updatePosition();
-            });
-        }
-        
-        // Fungsi untuk mengubah lampu lalu lintas
-        function changeTrafficLight() {
+        // Fungsi untuk mengupdate lampu lalu lintas
+        function updateTrafficLight() {
             // Matikan semua lampu
-            redLight.classList.remove('active');
-            yellowLight.classList.remove('active');
-            greenLight.classList.remove('active');
+            document.getElementById('red-light').classList.remove('active');
+            document.getElementById('yellow-light').classList.remove('active');
+            document.getElementById('green-light').classList.remove('active');
             
             // Nyalakan lampu sesuai state
             if (trafficLightState === 'red') {
-                redLight.classList.add('active');
-                statusText.textContent = 'MERAH - KENDARAAN BERHENTI';
-                statusText.className = 'status-red';
+                document.getElementById('red-light').classList.add('active');
+                document.getElementById('status-text').textContent = 'MERAH';
+                document.getElementById('status-text').className = 'status-light status-red';
             } else if (trafficLightState === 'yellow') {
-                yellowLight.classList.add('active');
-                statusText.textContent = 'KUNING - BERSIAP';
-                statusText.className = 'status-yellow';
+                document.getElementById('yellow-light').classList.add('active');
+                document.getElementById('status-text').textContent = 'KUNING';
+                document.getElementById('status-text').className = 'status-light status-yellow';
             } else if (trafficLightState === 'green') {
-                greenLight.classList.add('active');
-                statusText.textContent = 'HIJAU - KENDARAAN JALAN';
-                statusText.className = 'status-green';
+                document.getElementById('green-light').classList.add('active');
+                document.getElementById('status-text').textContent = 'HIJAU';
+                document.getElementById('status-text').className = 'status-light status-green';
             }
         }
         
-        // Fungsi untuk siklus lampu lalu lintas
-        function cycleTrafficLight() {
-            if (!simulationRunning) return;
+        // Fungsi untuk mengubah state lampu lalu lintas
+        function changeTrafficLight() {
+            if (trafficLightState === 'red') {
+                trafficLightState = 'green';
+            } else if (trafficLightState === 'green') {
+                trafficLightState = 'yellow';
+            } else {
+                trafficLightState = 'red';
+            }
             
-            countdown--;
-            countdownElement.textContent = countdown;
+            updateTrafficLight();
+            timeLeft = 5;
             
-            if (countdown <= 0) {
-                // Ganti state lampu
-                if (trafficLightState === 'red') {
-                    trafficLightState = 'green';
-                    countdown = 5;
-                } else if (trafficLightState === 'green') {
-                    trafficLightState = 'yellow';
-                    countdown = 2;
-                } else if (trafficLightState === 'yellow') {
-                    trafficLightState = 'red';
-                    countdown = 5;
-                }
-                
+            // Saat lampu berubah menjadi hijau, semua kendaraan mulai bergerak
+            if (trafficLightState === 'green') {
+                vehicles.forEach(vehicle => {
+                    vehicle.isMoving = true;
+                });
+            }
+        }
+        
+        // Fungsi untuk mengupdate timer
+        function updateTimer() {
+            timeLeft--;
+            document.getElementById('timer').textContent = `Berubah dalam: ${timeLeft} detik`;
+            
+            if (timeLeft <= 0) {
                 changeTrafficLight();
             }
         }
         
-        // Loop animasi
-        function animationLoop() {
-            if (simulationRunning) {
-                updateVehicles();
-            }
-            requestAnimationFrame(animationLoop);
-        }
-        
-        // Event listeners untuk tombol kontrol
-        startBtn.addEventListener('click', () => {
-            simulationRunning = true;
-            startBtn.disabled = true;
-            pauseBtn.disabled = false;
-        });
-        
-        pauseBtn.addEventListener('click', () => {
-            simulationRunning = false;
-            startBtn.disabled = false;
-            pauseBtn.disabled = true;
-        });
-        
-        resetBtn.addEventListener('click', () => {
-            simulationRunning = false;
-            startBtn.disabled = false;
-            pauseBtn.disabled = true;
-            
-            // Reset lampu ke merah
-            trafficLightState = 'red';
-            countdown = 5;
-            changeTrafficLight();
-            countdownElement.textContent = countdown;
-            
-            // Reset kendaraan
+        // Fungsi utama animasi
+        function animate() {
+            // Pindahkan semua kendaraan
             vehicles.forEach(vehicle => {
-                if (vehicle.element && vehicle.element.parentNode) {
-                    vehicle.element.parentNode.removeChild(vehicle.element);
-                }
+                vehicle.move();
             });
             
-            initializeVehicles();
-        });
+            // Hapus kendaraan yang sudah lama berada di jalan
+            if (vehicles.length > 30) {
+                const oldestVehicle = vehicles[0];
+                oldestVehicle.remove();
+            }
+            
+            // Secara acak tambahkan kendaraan baru
+            if (Math.random() < 0.1 && vehicles.length < 25) {
+                generateRandomVehicle();
+            }
+            
+            requestAnimationFrame(animate);
+        }
         
-        // Inisialisasi simulasi
-        function initSimulation() {
-            initializeVehicles();
-            changeTrafficLight();
+        // Inisialisasi
+        function init() {
+            // Buat beberapa kendaraan awal
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    generateRandomVehicle();
+                }, i * 1000);
+            }
             
-            // Jalankan timer untuk lampu lalu lintas
-            setInterval(cycleTrafficLight, 1000);
+            // Atur lampu lalu lintas awal
+            updateTrafficLight();
             
-            // Jalankan loop animasi
-            animationLoop();
+            // Atur timer untuk lampu lalu lintas
+            setInterval(updateTimer, 1000);
+            setInterval(changeTrafficLight, 5000);
             
-            // Nonaktifkan tombol pause di awal
-            pauseBtn.disabled = true;
+            // Mulai animasi
+            animate();
         }
         
         // Mulai simulasi saat halaman dimuat
-        window.addEventListener('DOMContentLoaded', initSimulation);
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
